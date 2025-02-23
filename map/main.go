@@ -28,8 +28,6 @@ func main(){
 	// fmt.Printf("grade is %d and if the value is exists ? -> %t\n ", grade,exists)
 
 	// fmt.Println("after delete Marks of meet is:- ", studentGrades["meet"])
-
-
 	for index,value := range studentGrades{
 		fmt.Printf("index is %s and value is %d\n",index,value)
 	}
