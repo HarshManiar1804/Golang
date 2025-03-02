@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -61,8 +62,48 @@ func performPostRequest(){
 	fmt.Println("response is",string(data))
 	fmt.Println("response status",res.StatusCode)
 }
+
+func performUpdateRequest(){
+	myURL2 := "https://jsonplaceholder.typicode.com/todos/1"
+	todo:= TODO{
+		UserId :234,
+		Id :202,
+		Title :"updated newTitle ",
+		Completed :true,
+	}
+
+	// convert todo structure into json format
+	todoJsonData,_:=json.Marshal(todo)
+	
+	// convert json data to string
+	jsonString := string(todoJsonData)
+
+	// convert string data into reader
+	jsonReader:=strings.NewReader(jsonString)
+
+	const myURL = "https://jsonplaceholder.typicode.com/todos/1"
+
+	req,_:= http.NewRequest(http.MethodPut,myURL2,jsonReader)
+
+	req.Header.Set("Content-type", "application/json")
+
+
+	// send the request
+	client := http.Client{}
+	res,_:=client.Do(req)
+	defer res.Body.Close()
+
+
+	// read the response
+
+	data,_:=ioutil.ReadAll(res.Body)
+
+	fmt.Println("response is",string(data))
+	fmt.Println("response status",res.StatusCode)
+}
 func main(){
 	// performGetRequest()
 	//  performPostRequest()
+	 performUpdateRequest()
 	
 }
