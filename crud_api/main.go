@@ -101,9 +101,27 @@ func performUpdateRequest(){
 	fmt.Println("response is",string(data))
 	fmt.Println("response status",res.StatusCode)
 }
+
+func performDeleteRequest(){
+
+	const myURL = "https://jsonplaceholder.typicode.com/todos/1"
+
+	req,_:= http.NewRequest(http.MethodDelete,myURL,nil)
+
+	req.Header.Set("Content-type", "application/json")
+
+	// send the request
+	client := http.Client{}
+	res,_:=client.Do(req)
+	defer res.Body.Close()
+
+
+	fmt.Println("response status",res.StatusCode)
+}
 func main(){
 	// performGetRequest()
 	//  performPostRequest()
-	 performUpdateRequest()
+	//  performUpdateRequest()
+	performDeleteRequest()
 	
 }
