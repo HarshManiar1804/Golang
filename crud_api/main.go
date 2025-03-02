@@ -122,6 +122,6 @@ func main(){
 	// performGetRequest()
 	//  performPostRequest()
 	//  performUpdateRequest()
-	performDeleteRequest()
+	// performDeleteRequest()
 	
 }
